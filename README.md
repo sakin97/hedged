@@ -1,13 +1,19 @@
 # hedged request with Node
 
 ```sh
-pnpm i
-tsc
+pnpm install
+pnpm build
 
-# apatchbench by normal(single) request
+# start target application server
+pnpm start:server
+
+# start client application server
+pnpm start:client
+
+# apatchbench using client server
+# by normal(single) request
 tests/scripts/normal.sh
 
-
-# apatchbench by hedged request
+# by hedged request
 tests/scripts/hedged.sh
 ```
