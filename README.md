@@ -10,7 +10,7 @@ pnpm start:server
 # start client application server
 pnpm start:client
 
-# apatchbench using client server
+# apatchebench using client server
 # by normal(single) request
 tests/scripts/normal.sh
 
