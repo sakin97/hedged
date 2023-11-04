@@ -1,21 +1,13 @@
+/** 
+ * This is dummy service client.
+ * `/normal` sends 1 request to `/ishealthy`.
+ * `/hedged` sends 3 requests to `/ishealthy` with 0ms, 21ms, 42ms delay,
+ *  and returns the fastest response.
+ */
+
 import { request } from "undici";
 import { setTimeout } from "timers/promises";
 import express from "express";
-
-// async function main() {
-//   const { statusCode, headers, trailers, body } = await request(
-//     "http://localhost:3000/ishealthy"
-//   );
-
-//   console.log("response received", statusCode);
-//   console.log("headers", headers);
-
-//   for await (const data of body) {
-//     console.log("data", data);
-//   }
-// }
-
-// main();
 
 const app: express.Express = express()
 
@@ -38,7 +30,7 @@ app.get('/hedged', async (req: express.Request, res: express.Response) => {
 		hedge(url, 21),
 		hedge(url, 42),
 	]
-	const {body} = await Promise.race(requests);
+	const {body} = await Promise.any(requests);
 	res.send(await body.json())
 })
 
